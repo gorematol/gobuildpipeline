@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 
-	"minikubeinstall/prechecks"
+	"minikubeinstall/utils"
 )
 
 var cpucmd = "/bin/grep -E --color 'svm|vmx' /proc/cpuinfo"
 
 func main() {
-	cpu := prechecks.OSrunCmd(cpucmd)
+	cpu := osutils.OSrunCmd(cpucmd)
 	fmt.Println(cpu)
 }
