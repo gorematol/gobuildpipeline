@@ -1,4 +1,4 @@
-package prechecks
+package osutils
 
 import (
 	"bytes"
@@ -23,4 +23,8 @@ func OSrunCmd(oscmd string) string {
 		log.Fatal("cmd.Run() failed with %s\n", errStr)
 	}
 	return outStr
+}
+
+func DownloadFiles(url string) string {
+	//download manifest files for processing
 }
