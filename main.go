@@ -1,19 +1,14 @@
 package main
 
 import (
-        "fmt" 
+	"fmt"
 
 	"minikubeinstall/prechecks"
 )
-var grepcmd = "/bin/grep"
-var vmxcpuargs = []string{"-E", "--color", "vmx", "/proc/cpuinfo" }
-var svmcpuargs = []string{"-E", "--color", "svm", "/proc/cpuinfo" }
 
+var cpucmd = "/bin/grep -E --color 'svm|vmx' /proc/cpuinfo"
 
 func main() {
-    vmx := prechecks.CheckCPU(grepcmd, vmxcpuargs)
-    svm := prechecks.CheckCPU(grepcmd, svmcpuargs)
-
-    fmt.Println(svm)
-    fmt.Println(vmx)
-}  
+	cpu := prechecks.OSrunCmd(cpucmd)
+	fmt.Println(cpu)
+}

@@ -1,24 +1,26 @@
 package prechecks
 
 import (
-	"os/exec"
+	"bytes"
 	"log"
+	"os/exec"
 )
 
+var shell = "bash"
 
-func CheckCPU(oscmd string, args []string) (string)  {
-        cmd := exec.Command(oscmd, args...)
-        out, err := cmd.CombinedOutput()
-        var empty string
+func OSrunCmd(oscmd string) string {
+	var stdout, stderr bytes.Buffer
+	cmd := exec.Command(shell, "-c", oscmd)
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
 
-        if err != nil {
-		log.Fatal("bad apple")
+	err := cmd.Run()
+	outStr, errStr := string(stdout.Bytes()), string(stderr.Bytes())
+	if len(outStr) == 0 {
+		return outStr
 	}
-        if string(out) == empty {
- 		log.Fatal("Virtualization is not supported on this host")
+	if err != nil {
+		log.Fatal("cmd.Run() failed with %s\n", errStr)
 	}
-        
-        return string(out) 
+	return outStr
 }
-        
-
