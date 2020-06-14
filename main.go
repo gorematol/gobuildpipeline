@@ -1,14 +1,11 @@
 package main
 
 import (
-	"fmt"
-
-	"minikubeinstall/utils"
+	"gobuildpipeline/builddocker"
 )
 
-var cpucmd = "/bin/grep -E --color 'svm|vmx' /proc/cpuinfo"
 
 func main() {
-	cpu := osutils.OSrunCmd(cpucmd)
-	fmt.Println(cpu)
+     builddocker.Install()
 }
+
