@@ -20,5 +20,5 @@ func OSrunCmd(oscmd string) (string, string, int) {
 		}
 	}
 	outStr := string(stdout.Bytes())
-	return outStr, nil, 0
+	return outStr, "", 0
 }
