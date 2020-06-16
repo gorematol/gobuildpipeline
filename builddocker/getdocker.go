@@ -7,11 +7,11 @@ import (
 	"gobuildpipeline/utils"
 )
 
-var installcmds = map[string]string{
-	"Installing docker from yum channels": "yum install -y docker",
-	"Checking binary using docker cmd":   "docker",
-	"Starting docker from systemctl":   "systemctl start docker",
-	"Checking running docker process":  "ps -ef | grep -i docker | grep -v grep",
+var dockerinstall = map[string]string {
+	"1. Installing docker from yum channels": "yum install -y docker",
+	"2. Checking binary using docker cmd":   "docker",
+	"3. Starting docker from systemctl":   "systemctl start docker",
+	"4. Checking running docker process":  "ps -ef | grep -i docker | grep -v grep",
 }
 
 func sortKeys(m map[string]string) []string {
@@ -29,10 +29,11 @@ func Install() {
 	for _, msg := range mapkeys {
 		cmd := installcmds[msg]
 		fmt.Println(msg)
-		_, rc := utils.OSrunCmd(cmd)
+		out,err,rc := utils.OSrunCmd(cmd)
 		if rc != 0 {
 		        fmt.Println("Failed OS command " + cmd)
 			utils.Log.Fatal("OS command failed " + cmd, rc)
-		}
+		} else {
+                
 	}
 }
