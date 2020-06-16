@@ -4,8 +4,6 @@ import (
 	"gobuildpipeline/builddocker"
 )
 
-
 func main() {
-     builddocker.Install()
+	builddocker.Install()
 }
-
