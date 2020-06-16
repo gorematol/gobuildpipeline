@@ -1,26 +1,25 @@
 package utils
 
 import (
-  "flag"
-  "os"
-  "log"
+	"flag"
+	"log"
+	"os"
 )
 
 var (
-  Log      *log.Logger
+	Log *log.Logger
 )
 
-
 func init() {
-    // set location of log file
-    var logpath = "/tmp/pipeline.log"
+	// set location of log file
+	var logpath = "/tmp/pipeline.log"
 
-   flag.Parse()
-   var file, err = os.Create(logpath)
+	flag.Parse()
+	var file, err = os.Create(logpath)
 
-   if err != nil {
-      panic(err)
-   }
-      Log = log.New(file, "", log.LstdFlags|log.Lshortfile)
-      Log.Println("LogFile : " + logpath)
+	if err != nil {
+		panic(err)
+	}
+	Log = log.New(file, "", log.LstdFlags|log.Lshortfile)
+	Log.Println("LogFile : " + logpath)
 }
