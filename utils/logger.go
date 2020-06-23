@@ -23,3 +23,4 @@ func init() {
 	Log = log.New(file, "", log.LstdFlags|log.Lshortfile)
 	Log.Println("LogFile : " + logpath)
 }
+
